@@ -1,10 +1,26 @@
-const {format, addDays, subDays} = require("date-fns");
+const fs = require("fs");
 
-const now = new Date();
-console.log("Today is: ", format(now, "dd-MMM-yyyy"));
+fs.readFile("example.txt", "utf8", (err, data) => {
+  if (err) {
+    console.log("Error reading file: ", err);
+    return;
+  }
+  console.log("file contains: ", data);
+});
 
-const nextWeek = addDays(now, 7);
-console.log("Next week: ", format(nextWeek, "dd-MMM-yyyy"));
+const content = "Hello worllddd";
+fs.writeFile("example.txt", content, (err) => {
+  if (err) {
+    console.log("File written unsuccessfully", err)
+    return;
+  }
+  console.log("File written successfully");
+});
 
-const previousWeek = subDays(now, 7);
-console.log("Previous week: ", format(previousWeek, "dd-MMM-yyyy"));
+fs.rename("example.txt", "new_example.txt", (err) => {
+ if (err) {
+  console.log("Error renaming the file", err);
+  return;
+ }
+ console.log("File renamed successfully!!");
+});
