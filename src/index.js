@@ -4,7 +4,7 @@ const port = 3001; // any num between 0 - 65,535
 
 // creates get route
 app.get("/", (req, res)=>{
-  console.log(req);
+  console.log("Testing");
   res.send("Hello world!");
 });
 
