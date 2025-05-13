@@ -3,11 +3,19 @@ const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
 const tasksRouter = require("./tasks/tasks.router.js");
+const cors = require("cors");
 
 const app = express();
 const port = 3001; // any num between 0 - 65,535
 
 app.use(express.json()); // JSON to object
+
+const corsOptions = {
+  origin: ["example.com", "example2.com"], // allow only this origin
+};
+
+// this is just during the development phase
+app.use(corse());
 
 let accessLogStream = fs.createWriteStream(
   path.join(__dirname, "..", "access.log"),
