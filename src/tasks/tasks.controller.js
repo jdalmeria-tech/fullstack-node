@@ -1,19 +1,35 @@
-function handleGetTasks(req, res){
-  res.send("GET tasks controller");
+function handleGetTasks(req, res) {
+  let response = [
+    {
+      title: "Title of the task",
+      date: "2025-01-01T12:00:00Z",
+      description: "learn fullstack",
+      priority: "normal",
+      status: "todo",
+    },
+    {
+      title: "Aspiring Fullstack Developer",
+      date: "2025-01-01T12:00:00Z",
+      description: "learn fullstack with react",
+      priority: "normal",
+      status: "todo",
+    },
+  ];
+
+  res.status(200).json(response);
 }
 
-function handlePostTasks(req, res){
+function handlePostTasks(req, res) {
   res.send("POST tasks controller");
 }
 
-function handlePatchTasks(req, res){
+function handlePatchTasks(req, res) {
   res.send("PATCH tasks controller");
 }
 
-function handleDeleteTasks(req, res){
+function handleDeleteTasks(req, res) {
   res.send("DELETE tasks controller");
 }
-
 
 module.exports = {
   handleGetTasks,
