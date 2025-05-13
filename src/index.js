@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
 const responseFormatter = require("./middleware/responseFormatter.js");
+const { StatusCodes } = require("http-status-codes");
 const tasksRouter = require("./tasks/tasks.router.js");
 const cors = require("cors");
 
@@ -30,6 +31,10 @@ app.use(responseFormatter); // format the response
 
 // define routes
 app.use("/", tasksRouter); // this is a middleware
+
+app.use((req, res)=>{
+  res.status(StatusCodes.NOT_FOUND).json(null);
+});
 
 // Starts the server and listens for incoming requests on the specified port
 app.listen(port, ()=>{
