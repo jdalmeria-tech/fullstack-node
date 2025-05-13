@@ -1,3 +1,5 @@
+const {StatusCodes, ReasonPhrases} = require("http-status-codes");
+
 function handleGetTasks(req, res) {
   let response = [
     {
@@ -16,7 +18,12 @@ function handleGetTasks(req, res) {
     },
   ];
 
-  res.status(200).json(response);
+  res.status(StatusCodes.OK).json({
+    status: "Success",
+    statusCode: StatusCodes.OK,
+    message: ReasonPhrases.OK,
+    data: response,
+  });
 }
 
 function handlePostTasks(req, res) {
