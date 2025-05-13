@@ -15,7 +15,7 @@ const corsOptions = {
 };
 
 // this is just during the development phase
-app.use(corse());
+app.use(cors());
 
 let accessLogStream = fs.createWriteStream(
   path.join(__dirname, "..", "access.log"),

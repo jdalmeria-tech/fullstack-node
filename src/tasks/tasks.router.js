@@ -1,16 +1,15 @@
 const express = require('express');
+const tasksController = require('./tasks.controller.js');
+
 const tasksRouter = express.Router();
 
-tasksRouter.get("/tasks", (req, res) => {
-  return res.send("Hello from tasks router");
-});
+tasksRouter.get("/tasks", tasksController.handleGetTasks);
 
-tasksRouter.post("/tasks", (req, res) => {
-  console.log(req.body);
-  console.log(typeof req.body);
+tasksRouter.post("/tasks", tasksController.handlePostTasks);
 
-  return res.send("Create new task");
-});
+tasksRouter.patch("/tasks", tasksController.handlePatchTasks);
+
+tasksRouter.delete("/tasks", tasksController.handleDeleteTasks);
 
 // exports the tasksRouter, so we can use it
 module.exports = tasksRouter;
