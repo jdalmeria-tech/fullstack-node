@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const responseFormatter = require("./middleware/responseFormatter.js");
 const { StatusCodes } = require("http-status-codes");
 const tasksRouter = require("./tasks/tasks.router.js");
+const authRouter = require("./auth/auth.router.js");
 const cors = require("cors");
 
 const app = express();
@@ -30,7 +31,9 @@ app.use(morgan("combined", { stream: accessLogStream })); // log to file
 app.use(responseFormatter); // format the response
 
 // define routes
-app.use("/", tasksRouter); // this is a middleware
+app.use("/", tasksRouter);
+app.use("/", authRouter);
+
 
 app.use((req, res)=>{
   res.status(StatusCodes.NOT_FOUND).json(null);
