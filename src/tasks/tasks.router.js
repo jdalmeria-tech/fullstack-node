@@ -7,6 +7,8 @@ tasksRouter.get("/tasks", (req, res) => {
 
 tasksRouter.post("/tasks", (req, res) => {
   console.log(req.body);
+  console.log(typeof req.body);
+
   return res.send("Create new task");
 });
 
