@@ -7,6 +7,8 @@ const { StatusCodes } = require("http-status-codes");
 const tasksRouter = require("./tasks/tasks.router.js");
 const authRouter = require("./auth/auth.router.js");
 const usersRouter = require("./users/users.router.js");
+const mongoose = require("mongoose");
+
 const cors = require("cors");
 
 const app = express();
@@ -40,7 +42,21 @@ app.use((req, res)=>{
   res.status(StatusCodes.NOT_FOUND).json(null);
 });
 
-// Starts the server and listens for incoming requests on the specified port
-app.listen(port, ()=>{
-  console.log(`App listening on port no: ${port}`);
-});
+async function bootstrap() {
+  try{
+    await mongoose.connect("mongodb+srv://jdalmeria-tech:Pl67lc6g878cBOnZ@nodejs.jvonelh.mongodb.net/",
+      { dbName: "fullstackTasks" }
+    );
+    console.log("Connected to MongoDB Atlas successfully");
+
+    // Starts the server and listens for incoming requests on the specified port
+    app.listen(port, ()=>{
+     console.log(`App listening on port no: ${port}`);
+   });
+  } catch (error){
+    console.log(error);
+    process.exit(1); // exit the process with failure
+  }
+}
+
+bootstrap();
