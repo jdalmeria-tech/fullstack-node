@@ -44,7 +44,8 @@ app.use((req, res)=>{
 
 async function bootstrap() {
   try{
-    await mongoose.connect("mongodb+srv://jdalmeria-tech:Pl67lc6g878cBOnZ@nodejs.jvonelh.mongodb.net/",
+    await mongoose.connect(
+      "mongodb+srv://jdalmeria-tech:Pl67lc6g878cBOnZ@nodejs.jvonelh.mongodb.net/",
       { dbName: "fullstackTasks" }
     );
     console.log("Connected to MongoDB Atlas successfully");
