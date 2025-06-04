@@ -1,5 +1,5 @@
 // This file defines the schema for a task in a task management application using Mongoose.
-const {Schema} = require("mongoose");
+const {Schema, model} = require("mongoose");
 
 const taskSchema = new Schema({
   title: {
@@ -30,8 +30,12 @@ const taskSchema = new Schema({
     type: Date,
     required: [true, "Task due date is required"],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+},
+{ timestamps: true, versionKey: false } // Automatically manage createdAt and updatedAt fields
+);
+
+// Create the Task model using the task schema
+const Task = model("Task", taskSchema);
+
+// Export the Task model for use in other parts of the application
+module.exports = Task;
