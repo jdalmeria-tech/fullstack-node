@@ -35,7 +35,7 @@ const userSchema = new Schema({
     validate: {
       validator: function (password) {
         // Regular expression to validate email format
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        return /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(
           password
         );
       },
