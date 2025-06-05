@@ -1,25 +1,10 @@
 const {StatusCodes, ReasonPhrases} = require("http-status-codes");
 const createTaskProvider = require("./providers/createTask.provider.js");
+const getTasksProvider = require("./providers/getTasks.provider.js");
 
-function handleGetTasks(req, res) {
-  let response = [
-    {
-      title: "Title of the task",
-      date: "2025-01-01T12:00:00Z",
-      description: "learn fullstack",
-      priority: "normal",
-      status: "todo",
-    },
-    {
-      title: "Aspiring Fullstack Developer",
-      date: "2025-01-01T12:00:00Z",
-      description: "learn fullstack with react",
-      priority: "normal",
-      status: "todo",
-    },
-  ];
-
-  res.status(StatusCodes.OK).json(response);
+async function handleGetTasks(req, res) {
+  const tasks = await getTasksProvider(req, res);
+  res.status(StatusCodes.OK).json(tasks);
 }
 
 async function handlePostTasks(req, res) {
