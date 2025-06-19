@@ -1,5 +1,5 @@
 const express = require("express");
-const { body, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
 const tasksController = require("./tasks.controller.js");
 const { StatusCodes } = require("http-status-codes");
 const createTaskValidator = require("./validators/createTask.validator.js");
