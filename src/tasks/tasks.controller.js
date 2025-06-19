@@ -17,8 +17,7 @@ async function handlePatchTasks(req, res) {
 }
 
 async function handleDeleteTasks(req, res) {
-  const deletedTask = await deleteTaskProvider(req, res);
-  res.status(StatusCodes.OK).json(deletedTask);
+  return await deleteTaskProvider(req, res);
 }
 
 module.exports = {
