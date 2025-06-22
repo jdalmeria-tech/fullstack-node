@@ -9,8 +9,13 @@ const authRouter = require("./auth/auth.router.js");
 const usersRouter = require("./users/users.router.js");
 const mongoose = require("mongoose");
 const expressWinstonLogger = require("./middleware/expressWinston.middleware.js");
-
+const dotenv = require("dotenv");
 const cors = require("cors");
+
+process.env.NODE_ENV = process.env.NODE_ENV || "development"; // set default env to development
+const envFile = `.env.${process.env.NODE_ENV}`; // .env.development, .env.production, .env.test
+
+dotenv.config({path: envFile}); // load environment variables from the specified .env file
 
 const app = express();
 const port = 3001; // any num between 0 - 65,535
