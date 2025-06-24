@@ -1,53 +1,18 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-const morgan = require("morgan");
-const responseFormatter = require("./middleware/responseFormatter.js");
-const { StatusCodes } = require("http-status-codes");
-const tasksRouter = require("./tasks/tasks.router.js");
-const authRouter = require("./auth/auth.router.js");
-const usersRouter = require("./users/users.router.js");
 const mongoose = require("mongoose");
-const expressWinstonLogger = require("./middleware/expressWinston.middleware.js");
 const dotenv = require("dotenv");
-const cors = require("cors");
+const configureApp = require("./settings/config.js");
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development"; // set default env to development
 const envFile = `.env.${process.env.NODE_ENV}`; // .env.development, .env.production, .env.test
 
 dotenv.config({ path: envFile }); // load environment variables from the specified .env file
-
 const app = express();
 const port = parseInt(process.env.PORT); // better practice to use parseInt for port
 
 app.use(express.json()); // JSON to object
 
-const corsOptions = {
-  origin: ["example.com", "example2.com"], // allow only this origin
-};
-
-// this is just during the development phase
-app.use(cors());
-
-let accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "..", "access.log"),
-  {
-    flags: "a", // append
-  }
-);
-
-app.use(morgan("combined", { stream: accessLogStream })); // log to file
-app.use(responseFormatter); // format the response
-app.use(expressWinstonLogger); // log requests and responses
-
-// define routes
-app.use("/", tasksRouter);
-app.use("/auth", authRouter);
-app.use("/users", usersRouter);
-
-app.use((req, res) => {
-  res.status(StatusCodes.NOT_FOUND).json(null);
-});
+configureApp(app);
 
 async function bootstrap() {
   try {
