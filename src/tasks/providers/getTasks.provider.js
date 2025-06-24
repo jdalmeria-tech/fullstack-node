@@ -20,7 +20,8 @@ async function getTasksProvider(req, res) {
 
     const tasks = await Task.find()
       .limit(limit)
-      .skip(currentPage - 1);
+      .skip(currentPage - 1)
+      .sort({ createdAt: order === "asc" ? 1 : -1 });
 
     let finalResponse = {
       data: tasks,
