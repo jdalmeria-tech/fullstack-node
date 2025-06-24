@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/jdalmeria-tech/fullstack-node#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "date-fns": "^4.1.0",
