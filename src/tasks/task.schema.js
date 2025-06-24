@@ -30,6 +30,7 @@ const taskSchema = new Schema({
     type: Date,
     required: [true, "Task due date is required"],
   },
+  user: {type: Schema.Types.ObjectId, ref: "User", required: true}, // Reference to the User model
 },
 { timestamps: true, versionKey: false } // Automatically manage createdAt and updatedAt fields
 );

@@ -2,9 +2,10 @@ POST http://localhost:3001/tasks
 Content-Type: application/json
 
 {
-  "title": "Title of the task 3",
+  "title": "Task with a User",
   "dueDate": "2025-01-01T12:00:00Z",
   "description": "learn fullstack",
   "priority": "normal",
-  "status": "todo"
+  "status": "todo",
+  "user" : "6841e82d8e39977b7b2d71a1"
 }
