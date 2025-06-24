@@ -15,10 +15,10 @@ const cors = require("cors");
 process.env.NODE_ENV = process.env.NODE_ENV || "development"; // set default env to development
 const envFile = `.env.${process.env.NODE_ENV}`; // .env.development, .env.production, .env.test
 
-dotenv.config({path: envFile}); // load environment variables from the specified .env file
+dotenv.config({ path: envFile }); // load environment variables from the specified .env file
 
 const app = express();
-const port = 3001; // any num between 0 - 65,535
+const port = parseInt(process.env.PORT); // better practice to use parseInt for port
 
 app.use(express.json()); // JSON to object
 
@@ -45,23 +45,22 @@ app.use("/", tasksRouter);
 app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 
-app.use((req, res)=>{
+app.use((req, res) => {
   res.status(StatusCodes.NOT_FOUND).json(null);
 });
 
 async function bootstrap() {
-  try{
-    await mongoose.connect(
-      "mongodb+srv://jdalmeria-tech:Pl67lc6g878cBOnZ@nodejs.jvonelh.mongodb.net/",
-      { dbName: "fullstackTasks" }
-    );
+  try {
+    await mongoose.connect(process.env.DATABASE_URL, {
+      dbName: process.env.DATABASE_NAME,
+    });
     console.log("Connected to MongoDB Atlas successfully");
 
     // Starts the server and listens for incoming requests on the specified port
-    app.listen(port, ()=>{
-     console.log(`App listening on port no: ${port}`);
-   });
-  } catch (error){
+    app.listen(port, () => {
+      console.log(`App listening on port no: ${port}`);
+    });
+  } catch (error) {
     console.log(error);
     process.exit(1); // exit the process with failure
   }
