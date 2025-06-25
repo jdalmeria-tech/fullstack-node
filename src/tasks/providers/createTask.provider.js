@@ -7,6 +7,8 @@ async function createTaskProvider(req, res) {
   const validatedResult = matchedData(req);
   const task = new Task(validatedResult);
 
+  console.log(req.user);
+
   try {
     await task.save();
     return res.status(StatusCodes.CREATED).json(task);

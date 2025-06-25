@@ -7,7 +7,7 @@ function generateTokenProvider(user) {
     iat: Math.floor(Date.now() / 1000),
     exp:
       Math.floor(Date.now() / 1000) +
-      parseInt(process.env.JWT_ACCESS_EXPIRATION_TTL), // Token valid for 24 hours
+      parseInt(process.env.JWT_ACCESS_EXPIRATION_TTL),
   };
 
   return jwt.sign(payload, process.env.JWT_SECRET);

@@ -1,5 +1,6 @@
 POST http://localhost:3001/tasks
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODVhOTJmODMyZGNkZjE2YWI5YjJlZmQiLCJlbWFpbCI6ImxlYnJvbkBqYW1lcy5jb20iLCJpYXQiOjE3NTA4NzQ4NDEsImV4cCI6MTc1MDk2MTI0MX0.Wu6zU1fd1QH6sNkHTAauSfVSRtEWX1_CUi1ob4gddiA
 
 {
   "title": "Task with a User",
@@ -7,5 +8,5 @@ Content-Type: application/json
   "description": "learn fullstack",
   "priority": "normal",
   "status": "todo",
-  "user" : "6841e82d8e39977b7b2d71a1"
+  "user" : "685a92f832dcdf16ab9b2efd"
 }
