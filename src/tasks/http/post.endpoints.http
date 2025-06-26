@@ -5,8 +5,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODVhOTJmO
 {
   "title": "Task with a User",
   "dueDate": "2025-01-01T12:00:00Z",
-  "description": "learn fullstack",
+  "description": "learn fullstack 2025",
   "priority": "normal",
-  "status": "todo",
-  "user" : "685a92f832dcdf16ab9b2efd"
+  "status": "todo"
 }
