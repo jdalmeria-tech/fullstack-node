@@ -24,6 +24,65 @@ tasksRouter.get(
   }
 );
 
+/**
+ * @swagger
+ * 
+ * components:
+ *  securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
+ * /tasks:
+ *  post:
+ *    summary: Create a new task
+ *    tags: [Tasks]
+ *    security:
+ *      - bearerAuth: []
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Task'
+ *    responses:
+ *      201:
+ *        description: Task created successfully
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: success
+ *              statusCode: 201
+ *              message: Created
+ *              data:
+ *                _id: 60c72b2f9b1e8c001c8e4d3a
+ *                title: "Create an MVP for online services"
+ *                description: "Create a minimum viable product for online services using Node.js, Express, and MongoDB"
+ *                status: "todo"
+ *                priority: "normal"
+ *                dueDate: 2025-05-05T12:00:00Z
+ *      401:
+ *        description: Unauthorized Error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 401
+ *              message: Unauthorized
+ *              error:
+ *                message: You are not authorized to access this resource.
+ *      403:
+ *        description: Forbidden Error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 403
+ *              message: Forbidden
+ *              error:
+ *                message: Invalid token. Please log in again.                
+ */
+
 tasksRouter.post(
   "/tasks",
   [createTaskValidator, authenticateToken],
