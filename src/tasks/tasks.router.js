@@ -10,6 +10,80 @@ const authenticateToken = require("../middleware/authenticateToken.middleware.js
 
 const tasksRouter = express.Router();
 
+/**
+ * @swagger
+ * 
+ * components:
+ *  securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
+ * /tasks:
+ *  get:
+ *    summary: Get all tasks
+ *    tags: [Tasks]
+ *    security:
+ *      - bearerAuth: []
+ *    parameters:
+ *      - in: query
+ *        name: limit
+ *        schema:
+ *          type: integer
+ *          default: 10
+ *        description: The number of tasks needed in a single response
+ *      - in: query
+ *        name: page
+ *        schema:
+ *          type: integer
+ *          default: 1
+ *        description: The page number of the tasks response
+ *      - in: query
+ *        name: order
+ *        schema:
+ *          type: string
+ *          default: 'asc'
+ *          enum: ['asc', 'desc']
+ *        description: The order of the tasks response
+ * 
+ *    responses:
+ *      200:
+ *        description: Task created successfully
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: success
+ *              statusCode: 200
+ *              message: Ok
+ *              data:
+ *                - _id: 60c72b2f9b1e8c001c8e4d3a
+ *                  title: "Create an MVP for online services"
+ *                  description: "Create a minimum viable product for online services using Node.js, Express, and MongoDB"
+ *                  status: "todo"
+ *                  priority: "normal"
+ *                  dueDate: 2025-05-05T12:00:00Z
+ *      401:
+ *        description: Unauthorized Error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 401
+ *              message: Unauthorized
+ *              error:
+ *                message: You are not authorized to access this resource.
+ *      403:
+ *        description: Forbidden Error
+ *        content:
+ *          application/json:
+ *            example:
+ *              status: error
+ *              statusCode: 403
+ *              message: Forbidden
+ *              error:
+ *                message: Invalid token. Please log in again.                
+ */
+
 tasksRouter.get(
   "/tasks",
   [getTasksValidator, authenticateToken],
