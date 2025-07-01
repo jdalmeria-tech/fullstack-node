@@ -33,27 +33,6 @@ const usersRouter = express.Router();
  *                firstName: John
  *                lastName: Doe
  *                email: john@doe.com
- *
- *      401:
- *        description: Unauthorized Error
- *        content:
- *          application/json:
- *            example:
- *              status: error
- *              statusCode: 401
- *              message: Unauthorized
- *              error:
- *                message: You are not authorized to access this resource.
- *      403:
- *        description: Forbidden Error
- *        content:
- *          application/json:
- *            example:
- *              status: error
- *              statusCode: 403
- *              message: Forbidden
- *              error:
- *                message: Invalid token. Please log in again.                
  */
 
 usersRouter.post("/create", createUserValidator, (req, res) => {
