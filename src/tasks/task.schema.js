@@ -82,3 +82,64 @@ module.exports = Task;
  *      priority: "normal"
  *      dueDate: 2025-05-05T12:00:00Z
  * */
+
+/**
+ * @swagger
+ * 
+ * components:
+ *   schemas:
+ *    TaskUpdate:
+ *     type: object
+ *     required:
+ *      - _id
+ *     properties:
+ *      _id:
+ *       type: string
+ *       description: The MongoDB ObjectId of the task
+ *       format: ObjectId
+ *      title:
+ *       type: string
+ *       description: The title of the task
+ *       maxLength: 100
+ *      description:
+ *       type: string
+ *       description: The description of the task
+ *       maxLength: 500
+ *      status:
+ *       type: string
+ *       description: The status of the task
+ *       enum: ["todo", "inProgress", "completed"]
+ *      priority:
+ *       type: string
+ *       description: The priority of the task
+ *       enum: ["low", "normal", "high"]
+ *      dueDate:
+ *       type: string
+ *       format: ISO8601 Date String
+ *       description: The due date of the task in ISO8601 format
+ *     example:
+ *      _id: 683fba6f409ebd7d025de27a
+ *      title: Create an MVP for online services
+ *      description: Create a minimum viable product for online services using Node.js, Express, and MongoDB
+ *      status: todo
+ *      priority: normal
+ *      dueDate: 2025-05-05T12:00:00Z
+ * */
+
+/**
+ * @swagger
+ * 
+ * components:
+ *   schemas:
+ *    TaskDelete:
+ *     type: object
+ *     required:
+ *      - _id
+ *     properties:
+ *      _id:
+ *       type: string
+ *       description: The MongoDB ObjectId of the task
+ *       format: ObjectId
+ *     example:
+ *      _id: 683fba6f409ebd7d025de27a
+ * */
