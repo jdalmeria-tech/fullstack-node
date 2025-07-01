@@ -39,3 +39,37 @@ const User = model("User", userSchema);
 
 // Export the User model for use in other parts of the application
 module.exports = User;
+
+/**
+ * @swagger
+ * 
+ * components:
+ *   schemas:
+ *    User:
+ *     type: object
+ *     required:
+ *       - firstName
+ *       - email
+ *       - password
+ *     properties:
+ *       firstName:
+ *         type: string
+ *         description: The first name of the user
+ *         maxLength: 100
+ *       lastName:
+ *         type: string
+ *         description: The last name of the user
+ *         maxLength: 100
+ *       email:
+ *         type: string
+ *         description: A valid email address of the user
+ *       password:
+ *        type: string
+ *        description: Must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+ *     example:
+ *      firstName: John
+ *      lastName: Doe
+ *      email: john@doe.com
+ *      password: Password123!
+ *
+ * */
